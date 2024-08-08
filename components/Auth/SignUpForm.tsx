@@ -1,6 +1,7 @@
 // SignUpForm.js
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import {Text, View, StyleSheet, TextInput, Button, Alert, Pressable } from 'react-native';
+
 
 const SignUpForm = () => {
   const [email, setEmail] = useState('');
@@ -8,7 +9,7 @@ const SignUpForm = () => {
 
   const handleSignUp = () => {
     if (!email || !password) {
-      Alert.alert('Error', 'Please fill in both fields.');
+      Alert.alert('Hata', 'Lütfen gerekli tüm bölgeleri doldurunuz.');
       return;
     }
 
@@ -19,7 +20,7 @@ const SignUpForm = () => {
   return (
     <View style={styles.container}>
       <TextInput
-        placeholder="Email"
+        placeholder="Eposta"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
@@ -27,13 +28,15 @@ const SignUpForm = () => {
         style={styles.input}
       />
       <TextInput
-        placeholder="Password"
+        placeholder="Şifre"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
         style={styles.input}
       />
-      <Button title="Sign Up" onPress={handleSignUp} />
+      <Pressable style={styles.button} onPress={handleSignUp} >
+        <Text style={styles.buttontext}> Giriş Yap</Text>
+        </Pressable>
     </View>
   );
 };
@@ -41,6 +44,7 @@ const SignUpForm = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "column",
     justifyContent: 'center',
     padding: 16,
   },
@@ -50,6 +54,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 16,
     paddingHorizontal: 8,
+    borderRadius: 4,
+  },
+  button: {
+    backgroundColor: '#0a7ea4',
+    color: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+    borderRadius: 4,
+  },
+  buttontext: {
+    color: 'white',
   },
 });
 
